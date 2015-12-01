@@ -1,0 +1,459 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="75">
+
+            <ListView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/listView"
+                android:layout_weight="7" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="95">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Envoyer"
+                    android:id="@+id/boutonEnvoyer"
+                    android:layout_weight="50" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Retirer"
+                    android:id="@+id/boutonRetirer"
+                    android:layout_weight="50" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="25">
+
+            <TableLayout
+                android:id="@+id/tab1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Déjeûners"
+                        android:id="@+id/textView2"
+                        android:layout_column="0" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:text="oeuf"
+                        android:id="@+id/bOeuf"
+                        android:layout_column="0"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="2 oeufs"
+                        android:id="@+id/b2Oeufs"
+                        android:layout_column="1"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="2 oeufs\nbacon"
+                        android:id="@+id/b2Oeufsbacon"
+                        android:layout_column="2"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="Crêpes"
+                        android:id="@+id/bCrepes"
+                        android:layout_column="3"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="Gauffres"
+                        android:id="@+id/bGauffres"
+                        android:layout_column="4"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="Assiette\nde fruits"
+                        android:id="@+id/bFruits"
+                        android:layout_column="5"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Dîners"
+                        android:id="@+id/textView5"
+                        android:layout_column="0" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" >
+
+                    <Button
+                        android:text="Club\nsandwich"
+                        android:id="@+id/bSandwich"
+                        android:layout_column="0"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="Poutine"
+                        android:id="@+id/bPoutine"
+                        android:layout_column="1"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="Grilled\ncheese"
+                        android:id="@+id/bGrilledCheese"
+                        android:layout_column="2"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="Smoked\nmeat"
+                        android:id="@+id/bSmokedMeat"
+                        android:layout_column="3"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="Taco"
+                        android:id="@+id/bTaco"
+                        android:layout_column="4"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="Hamburger"
+                        android:id="@+id/bHamburger"
+                        android:layout_column="5"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Boissons"
+                        android:id="@+id/textView3"
+                        android:layout_column="0" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" >
+
+                    <Button
+                        android:text="Café"
+                        android:id="@+id/bCafe"
+                        android:layout_column="0"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="Vodka"
+                        android:id="@+id/bVodka"
+                        android:layout_column="1"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="Thé"
+                        android:id="@+id/bThé"
+                        android:layout_column="2"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="Tisane"
+                        android:id="@+id/bTisane"
+                        android:layout_column="3"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="Jus d&apos;orange"
+                        android:id="@+id/bJusOrange"
+                        android:layout_column="4"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="Acide à\nbatterie"
+                        android:id="@+id/bAcide"
+                        android:layout_column="5"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Desserts"
+                        android:id="@+id/textView"
+                        android:layout_column="0" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" >
+
+                    <Button
+                        android:text="Tiramisu"
+                        android:id="@+id/bTiramisu"
+                        android:layout_column="0"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="Xiaolongbao"
+                        android:id="@+id/bXiaolongbao"
+                        android:layout_column="1"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="Pouding"
+                        android:id="@+id/bPouding"
+                        android:layout_column="2"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="Forêt noire"
+                        android:id="@+id/bForetNoire"
+                        android:layout_column="3"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="Salade\nde fruits"
+                        android:id="@+id/bSaladeFruit"
+                        android:layout_column="4"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="Jell-o"
+                        android:id="@+id/bJello"
+                        android:layout_column="5"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Salades"
+                        android:id="@+id/textView4"
+                        android:layout_column="0" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" >
+
+                    <Button
+                        android:text="Volonté"
+                        android:id="@+id/bVolonte"
+                        android:layout_column="0"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="César"
+                        android:id="@+id/bCesar"
+                        android:layout_column="1"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="Poulet grillé"
+                        android:id="@+id/bSaladePoulet"
+                        android:layout_column="2"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="Californienne"
+                        android:id="@+id/bCalifornienne"
+                        android:layout_column="3"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="Macédoine"
+                        android:id="@+id/bMacedoine"
+                        android:layout_column="4"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="Concombre"
+                        android:id="@+id/bConcombre"
+                        android:layout_column="5"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+                </TableRow>
+
+            </TableLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

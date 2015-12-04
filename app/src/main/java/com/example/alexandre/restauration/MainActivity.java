@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private Spinner spinner;
     private ArrayList<Serveur> serveurs;
     private Commande commande;
+    private ArrayList<Commande> liste_commandes_pretes;
     Gson gson;
     JSONObject data;
     public int notif_id = 1;
@@ -220,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void recevoir_commande(JSONObject data){
         Commande commande_terminee = gson.fromJson(data.toString(), Commande.class);
-        if (commande_terminee.getRqst().equals("ready")) {
+        if (commande_terminee.getRqst().equals("ready") && commande_terminee.getServeur().getId().equals(commande.getServeur().getId())) {
             sendNotification(commande_terminee);
         }
     }

@@ -14,9 +14,12 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,12 +31,13 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<String> liste;
     private ListView listview;
-    private Serveur serveur;
+    private Spinner spinner;
+    private ArrayList<Serveur> serveurs;
     private Commande commande;
     Gson gson;
+    JSONObject data;
     public int notif_id = 1;
 
-    JSONObject data;
 
     private Socket mSocket;
     {
@@ -83,19 +87,44 @@ public class MainActivity extends AppCompatActivity {
 
         gson = new GsonBuilder().create();
 
-        serveur = new Serveur();
-        serveur.setId("1");
-        serveur.setNom("Vanesssa");
+        setListeServeurs();
 
         commande = new Commande ();
-        commande.setServeur(serveur);
+        commande.setServeur(serveurs.get(0));
         commande.setTable("1");
-        commande.setRqst("New");
+        commande.setRqst("new");
 
         final ArrayList<String> liste = new ArrayList<String>();
         associerValeurs();
         setBoutonVider();
         setBoutonEnvoyer();
+    }
+
+    private void setListeServeurs() {
+        spinner = (Spinner) findViewById(R.id.spinner);
+        serveurs = new ArrayList<Serveur>();
+        Serveur vanessa = new Serveur();
+        vanessa.setNom("Vanesssa");
+        vanessa.setId("1");
+        serveurs.add(vanessa);
+        Serveur rogere = new Serveur();
+        rogere.setId("2");
+        rogere.setNom("Rogère");
+        serveurs.add(rogere);
+        ArrayList<String> nomsServeurs = new ArrayList<String>();
+        nomsServeurs.add("Vanesssa");
+        nomsServeurs.add("Rogère");
+        ArrayAdapter<String> adapteurServeurs = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, nomsServeurs);
+        spinner.setAdapter(adapteurServeurs);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                commande.setServeur(serveurs.get(spinner.getSelectedItemPosition()));
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView){
+            }
+        });
     }
 
     private void associerValeurs() {
@@ -191,30 +220,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void recevoir_commande(JSONObject data){
         Commande commande_terminee = gson.fromJson(data.toString(), Commande.class);
-        if (commande_terminee.getRqst() == "ready") {
+        if (commande_terminee.getRqst().equals("ready")) {
             sendNotification(commande_terminee);
         }
     }
 
     public void sendNotification(Commande a_commande_terminee) {
 
-
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 
-        builder.setSmallIcon(R.drawable.icone_statut);
+        builder.setSmallIcon(R.drawable.icone_statut2);
 
         builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.icon_principale));
-
-        /**
-         * Set the text of the notification. This sample sets the three most commononly used
-         * text areas:
-         * 1. The content title, which appears in large type at the top of the notification
-         * 2. The content text, which appears in smaller text below the title
-         * 3. The subtext, which appears under the text on newer devices. Devices running
-         *    versions of Android prior to 4.2 will ignore this field, so don't use it for
-         *    anything vital!
-         */
-        builder.setContentTitle("La commande #" + notif_id+ " est prête!");
+        builder.setContentTitle("Commande prête!");
         builder.setContentText("Table " + a_commande_terminee.getTable());
         builder.setPriority(2);
         builder.setDefaults(Notification.DEFAULT_VIBRATE);

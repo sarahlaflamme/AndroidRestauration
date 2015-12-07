@@ -222,6 +222,7 @@ public class MainActivity extends AppCompatActivity {
     public void recevoir_commande(JSONObject data){
         Commande commande_terminee = gson.fromJson(data.toString(), Commande.class);
         if (commande_terminee.getRqst().equals("ready") && commande_terminee.getServeur().getId().equals(commande.getServeur().getId())) {
+            DataSingleton.getInstance().addCommande(commande_terminee);
             sendNotification(commande_terminee);
         }
     }

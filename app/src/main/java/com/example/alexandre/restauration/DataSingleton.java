@@ -7,17 +7,19 @@ import java.util.ArrayList;
  */
 public class DataSingleton {
     private ArrayList<Commande> data = new ArrayList<Commande>();
+    public Serveur serveur = new Serveur();
+    public Commande commande = new Commande();
     public ArrayList getCommandesPretes(){
         return data;
     };
-    public void addCommande(Commande a_commande){
+    public void ajouterCommande(Commande a_commande){
         this.data.add(a_commande);
-        for (Commande v : this.data) {
-            System.out.println(v.toString());
-        }
     };
-    public void removeCommande(Integer a_index){
+    public void supprimerCommande(Integer a_index){
         this.data.remove(a_index);
+    };
+    public void definirServeur(String a_id){
+        this.serveur.setNom(a_id);
     };
     private static final DataSingleton data_singleton = new DataSingleton();
     public static DataSingleton getInstance() {return data_singleton;}

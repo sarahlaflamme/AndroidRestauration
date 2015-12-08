@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder;
 
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
@@ -29,15 +30,16 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    Button bCommandes;
+    Intent commande_pretes;
     private ArrayList<String> liste;
     private ListView listview;
     private Spinner spinner;
     private ArrayList<Serveur> serveurs;
-    private Commande commande;
-    private ArrayList<Commande> liste_commandes_pretes;
     Gson gson;
     JSONObject data;
     public int notif_id = 1;
+    DataSingleton data_manager;
 
 
     private Socket mSocket;
@@ -79,26 +81,32 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        data_manager = DataSingleton.getInstance();
         mSocket.on("message", onNewMessage);
         mSocket.connect();
 
         liste = new ArrayList<String>();
         listview = (ListView) findViewById(R.id.listView);
 
+        bCommandes = (Button) findViewById(R.id.bCommandes);
         gson = new GsonBuilder().create();
 
         setListeServeurs();
 
-        commande = new Commande ();
-        commande.setServeur(serveurs.get(0));
-        commande.setTable("1");
-        commande.setRqst("new");
+        data_manager.commande.setServeur(data_manager.serveur);
+        data_manager.commande.setTable("1");
+        data_manager.commande.setRqst("new");
 
         final ArrayList<String> liste = new ArrayList<String>();
         associerValeurs();
         setBoutonVider();
         setBoutonEnvoyer();
+        bCommandes.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                commande_pretes = new Intent(getApplicationContext(), CommandesPretesActivity.class);
+                startActivity(commande_pretes);
+            }
+        });
     }
 
     private void setListeServeurs() {
@@ -120,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                commande.setServeur(serveurs.get(spinner.getSelectedItemPosition()));
+                //commande.setServeur(serveurs.get(spinner.getSelectedItemPosition()));
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView){
@@ -172,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void ajouterItem(String a_nom, String a_commentaire, int a_prix)  {
         Item item = new Item(a_nom, a_commentaire, a_prix);
-        commande.ajouterItem(item);
+        data_manager.commande.ajouterItem(item);
         String nom = String.format("%.2f", (float) a_prix/100) + "$ " + item.getNom();
         liste.add(nom);
         rafraichirListe();
@@ -195,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void viderListes() {
         liste = new ArrayList<String>();
-        commande.setItems(new ArrayList<Item>());
+        data_manager.commande.setItems(new ArrayList<Item>());
         rafraichirListe();
     }
 
@@ -205,9 +213,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                if (commande.getItems().size() > 0) {
+                if (data_manager.commande.getItems().size() > 0) {
                     try {
-                        JSONObject json_commande = new JSONObject(gson.toJson(commande));
+                        JSONObject json_commande = new JSONObject(gson.toJson(data_manager.commande));
                         mSocket.emit("message", json_commande);
                         viderListes();
                     } catch (JSONException e) {
@@ -221,8 +229,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void recevoir_commande(JSONObject data){
         Commande commande_terminee = gson.fromJson(data.toString(), Commande.class);
-        if (commande_terminee.getRqst().equals("ready") && commande_terminee.getServeur().getId().equals(commande.getServeur().getId())) {
-            DataSingleton.getInstance().addCommande(commande_terminee);
+        if (commande_terminee.getRqst().equals("ready") && commande_terminee.getServeur().getNom().equals(data_manager.serveur.getNom())) {
+            DataSingleton.getInstance().ajouterCommande(commande_terminee);
             sendNotification(commande_terminee);
         }
     }

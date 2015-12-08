@@ -18,7 +18,7 @@
 
             <Spinner
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:id="@+id/spinner"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="25" />
@@ -73,7 +73,36 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Déjeûners"
                         android:id="@+id/textView2"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:layout_weight="1" />
+
+                    <Space
+                        android:layout_width="20px"
+                        android:layout_height="20px"
+                        android:layout_weight="1" />
+
+                    <Space
+                        android:layout_width="20px"
+                        android:layout_height="20px"
+                        android:layout_weight="1" />
+
+                    <Space
+                        android:layout_width="20px"
+                        android:layout_height="20px"
+                        android:layout_weight="1" />
+
+                    <Space
+                        android:layout_width="20px"
+                        android:layout_height="20px"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Commandes"
+                        android:id="@+id/bCommandes"
+                        android:layout_weight="1" />
+
                 </TableRow>
 
                 <TableRow

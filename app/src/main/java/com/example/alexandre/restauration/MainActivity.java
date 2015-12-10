@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private Socket mSocket;
     {
         try {
-            mSocket = IO.socket("http://192.168.0.104:8080");
+            mSocket = IO.socket("http://10.0.0.43:8080");
             JSONObject message_initial = new JSONObject();
             try {
                 message_initial.put("rqst", "sendall");
